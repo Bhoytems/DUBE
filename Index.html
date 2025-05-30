@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUBE Airdrop - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DUBE Airdrop</h1>
+            <div class="user-profile">
+                <img id="user-photo" src="images/default-user.png" alt="Profile">
+                <div class="user-info">
+                    <span id="user-name">Loading...</span>
+                    <div class="balance">Balance: <span id="user-balance">0</span> DUBE</div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="bonus-section">
+                <h2>Daily Bonus</h2>
+                <div class="daily-bonus">
+                    <p>Claim your 50 DUBE daily bonus!</p>
+                    <button id="daily-bonus-btn" class="bonus-btn" disabled>Claim Bonus</button>
+                    <p id="bonus-timer">Next bonus available in: <span id="countdown">24:00:00</span></p>
+                </div>
+            </section>
+
+            <section class="tasks">
+                <h2>Complete Tasks to Earn Points</h2>
+                <div class="task-list">
+                    <div class="task">
+                        <h3>Join Telegram Group</h3>
+                        <p>+50 DUBE</p>
+                        <button class="task-btn" data-task="telegram">Complete</button>
+                    </div>
+                    <div class="task">
+                        <h3>Follow on Twitter</h3>
+                        <p>+30 DUBE</p>
+                        <button class="task-btn" data-task="twitter">Complete</button>
+                    </div>
+                    <div class="task">
+                        <h3>Retweet Post</h3>
+                        <p>+20 DUBE</p>
+                        <button class="task-btn" data-task="retweet">Complete</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <nav>
+                <a href="index.html" class="active"><span>🏠</span> Home</a>
+                <a href="leaderboard.html"><span>📊</span> Leaderboard</a>
+                <a href="referrals.html"><span>👥</span> Referrals</a>
+            </nav>
+        </footer>
+    </div>
+
+    <<script src="js/telegram-app.js"></script>
+</body>
+</html>

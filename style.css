@@ -1,0 +1,262 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000000; /* Black background */
+    color: #ffffff; /* White text */
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: #ffffff; /* White text */
+    margin-bottom: 15px;
+}
+
+/* User Profile (Purple Balance Board) */
+.user-profile {
+    display: flex;
+    align-items: center;
+    background: #6a0dad; /* Purple background */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.user-profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 2px solid #ffffff;
+}
+
+.user-info {
+    text-align: left;
+    color: #ffffff; /* White text */
+}
+
+.balance {
+    font-weight: bold;
+    color: #ffffff; /* White text */
+    margin-top: 5px;
+}
+
+/* Tasks Section */
+.tasks {
+    background: #1a1a1a; /* Dark gray background */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.tasks h2 {
+    margin-bottom: 15px;
+    color: #ffffff; /* White text */
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #2a2a2a; /* Darker gray background */
+    border-radius: 8px;
+}
+
+.task h3 {
+    font-size: 16px;
+    color: #ffffff; /* White text */
+}
+
+.task p {
+    color: #ffffff; /* White text */
+    font-weight: bold;
+}
+
+.task-btn {
+    background-color: #6a0dad; /* Purple button */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.task-btn:hover {
+    background-color: #7b1fa2; /* Lighter purple on hover */
+}
+
+.task-btn.completed {
+    background-color: #4CAF50;
+}
+
+/* Leaderboard Styles */
+.leaderboard {
+    background: #1a1a1a; /* Dark gray background */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-weight: bold;
+    color: #ffffff; /* White text */
+    border-bottom: 1px solid #333;
+}
+
+.leaderboard-list {
+    margin-top: 10px;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    color: #ffffff; /* White text */
+    border-bottom: 1px solid #333;
+}
+
+/* Referral Styles */
+.referral-section {
+    background: #1a1a1a; /* Dark gray background */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.referral-link {
+    margin-bottom: 20px;
+}
+
+.link-box {
+    display: flex;
+    margin: 10px 0;
+}
+
+.link-box input {
+    flex: 1;
+    padding: 10px;
+    background: #2a2a2a; /* Darker gray background */
+    border: 1px solid #333;
+    color: #ffffff; /* White text */
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.link-box button {
+    background-color: #6a0dad; /* Purple button */
+    color: white;
+    border: none;
+    padding: 0 15px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.link-box button:hover {
+    background-color: #7b1fa2; /* Lighter purple on hover */
+}
+
+.small-text {
+    font-size: 12px;
+    color: #aaaaaa; /* Light gray text */
+}
+
+.referral-stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.stat-box {
+    background: #2a2a2a; /* Darker gray background */
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 0 0 48%;
+}
+
+.stat-box h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #ffffff; /* White text */
+}
+
+.stat-box p {
+    font-weight: bold;
+    color: #ffffff; /* White text */
+    font-size: 18px;
+}
+
+.referral-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    color: #ffffff; /* White text */
+    border-bottom: 1px solid #333;
+}
+
+/* Footer Navigation (Black Background) */
+footer {
+    margin-top: auto;
+    padding-top: 15px;
+    background: #000000; /* Black background */
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    background: #000000; /* Black background */
+    padding: 10px 0;
+    border-radius: 10px;
+}
+
+nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff; /* White text */
+    font-size: 12px;
+}
+
+nav a span {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+nav a.active {
+    color: #6a0dad; /* Purple for active tab */
+}

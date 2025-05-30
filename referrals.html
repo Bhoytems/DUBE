@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUBE Airdrop - Referrals</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DUBE Referrals</h1>
+        </header>
+
+        <main>
+            <section class="referral-section">
+                <div class="referral-link">
+                    <h2>Your Referral Link</h2>
+                    <div class="link-box">
+                        <input type="text" id="referral-link" readonly value="https://dube-airdrop.com?ref=user123">
+                        <button id="copy-btn">Copy</button>
+                    </div>
+                    <p class="small-text">Earn <strong>100 DUBE</strong> for every friend who joins via your link!</p>
+                </div>
+
+                <div class="referral-stats">
+                    <div class="stat-box">
+                        <h3>Total Referrals</h3>
+                        <p id="total-referrals">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Earned From Referrals</h3>
+                        <p id="earned-referrals">0 DUBE</p>
+                    </div>
+                </div>
+
+                <div class="referral-list">
+                    <h2>Your Referrals</h2>
+                    <div id="referrals-list">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <nav>
+                <a href="index.html"><span>🏠</span> Home</a>
+                <a href="leaderboard.html"><span>📊</span> Leaderboard</a>
+                <a href="referrals.html" class="active"><span>👥</span> Referrals</a>
+            </nav>
+        </footer>
+    </div>
+
+    <script src="js/referrals.js"></script>
+</body>
+</html>
