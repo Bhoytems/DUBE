@@ -7,8 +7,8 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #000000; /* Black background */
-    color: #ffffff; /* White text */
+    background-color: #000000;
+    color: #ffffff;
     line-height: 1.6;
 }
 
@@ -27,19 +27,20 @@ header {
 }
 
 header h1 {
-    color: #ffffff; /* White text */
+    color: #ffffff;
     margin-bottom: 15px;
 }
 
-/* User Profile (Purple Balance Board) */
+/* User Profile with Black Border */
 .user-profile {
     display: flex;
     align-items: center;
-    background: #6a0dad; /* Purple background */
+    background: #0041c2;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
+    border: 2px solid #000000; /* blavk border */
 }
 
 .user-profile img {
@@ -52,18 +53,18 @@ header h1 {
 
 .user-info {
     text-align: left;
-    color: #ffffff; /* White text */
+    color: #ffffff;
 }
 
 .balance {
     font-weight: bold;
-    color: #ffffff; /* White text */
+    color: #ffffff;
     margin-top: 5px;
 }
 
 /* Tasks Section */
 .tasks {
-    background: #1a1a1a; /* Dark gray background */
+    background: #1a1a1a;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -72,7 +73,8 @@ header h1 {
 
 .tasks h2 {
     margin-bottom: 15px;
-    color: #ffffff; /* White text */
+    color: #ffffff;
+    text-align: center;
 }
 
 .task-list {
@@ -86,22 +88,25 @@ header h1 {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background: #2a2a2a; /* Darker gray background */
+    background: #2a2a2a;
     border-radius: 8px;
+    position: relative;
 }
 
 .task h3 {
     font-size: 16px;
-    color: #ffffff; /* White text */
+    color: #ffffff;
+    flex: 1;
 }
 
 .task p {
-    color: #ffffff; /* White text */
+    color: #ffffff;
     font-weight: bold;
+    margin: 0 10px;
 }
 
 .task-btn {
-    background-color: #6a0dad; /* Purple button */
+    background-color: #0041c2;
     color: white;
     border: none;
     padding: 8px 15px;
@@ -109,136 +114,42 @@ header h1 {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
+    min-width: 100px;
 }
 
 .task-btn:hover {
-    background-color: #7b1fa2; /* Lighter purple on hover */
+    background-color: #0000ff;
 }
 
 .task-btn.completed {
-    background-color: #4CAF50;
+    background-color: #555;
 }
 
-/* Leaderboard Styles */
-.leaderboard {
-    background: #1a1a1a; /* Dark gray background */
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.task-btn:disabled {
+    background-color: #555;
+    cursor: not-allowed;
 }
 
-.leaderboard-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    font-weight: bold;
-    color: #ffffff; /* White text */
-    border-bottom: 1px solid #333;
-}
-
-.leaderboard-list {
-    margin-top: 10px;
-}
-
-.leaderboard-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    color: #ffffff; /* White text */
-    border-bottom: 1px solid #333;
-}
-
-/* Referral Styles */
-.referral-section {
-    background: #1a1a1a; /* Dark gray background */
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.referral-link {
-    margin-bottom: 20px;
-}
-
-.link-box {
-    display: flex;
-    margin: 10px 0;
-}
-
-.link-box input {
-    flex: 1;
-    padding: 10px;
-    background: #2a2a2a; /* Darker gray background */
-    border: 1px solid #333;
-    color: #ffffff; /* White text */
-    border-radius: 5px 0 0 5px;
-    outline: none;
-}
-
-.link-box button {
-    background-color: #6a0dad; /* Purple button */
-    color: white;
-    border: none;
-    padding: 0 15px;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.link-box button:hover {
-    background-color: #7b1fa2; /* Lighter purple on hover */
-}
-
-.small-text {
+.task-timer {
+    position: absolute;
+    bottom: -15px;
     font-size: 12px;
-    color: #aaaaaa; /* Light gray text */
-}
-
-.referral-stats {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
-}
-
-.stat-box {
-    background: #2a2a2a; /* Darker gray background */
-    padding: 15px;
-    border-radius: 8px;
+    color: #aaaaaa;
+    width: 100%;
     text-align: center;
-    flex: 0 0 48%;
 }
 
-.stat-box h3 {
-    font-size: 14px;
-    margin-bottom: 5px;
-    color: #ffffff; /* White text */
-}
-
-.stat-box p {
-    font-weight: bold;
-    color: #ffffff; /* White text */
-    font-size: 18px;
-}
-
-.referral-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    color: #ffffff; /* White text */
-    border-bottom: 1px solid #333;
-}
-
-/* Footer Navigation (Black Background) */
+/* Footer Navigation */
 footer {
     margin-top: auto;
     padding-top: 15px;
-    background: #000000; /* Black background */
+    background: #000000;
 }
 
 nav {
     display: flex;
     justify-content: space-around;
-    background: #000000; /* Black background */
+    background: #000000;
     padding: 10px 0;
     border-radius: 10px;
 }
@@ -248,7 +159,7 @@ nav a {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: #ffffff; /* White text */
+    color: #ffffff;
     font-size: 12px;
 }
 
@@ -258,5 +169,5 @@ nav a span {
 }
 
 nav a.active {
-    color: #6a0dad; /* Purple for active tab */
-}
+    color: #0041c2;
+    }
