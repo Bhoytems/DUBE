@@ -3,50 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DUBE Airdrop - Home</title>
+    <title>DUBE - Home</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>DUBE Airdrop</h1>
+            <h1>DUBE</h1>
             <div class="user-profile">
                 <img id="user-photo" src="images/default-user.png" alt="Profile">
                 <div class="user-info">
                     <span id="user-name">Loading...</span>
-                    <div class="balance">Balance: <span id="user-balance">0</span> DUBE</div>
+                    <div class="balance"> <span id="user-balance">0</span> DUBE</div>
                 </div>
             </div>
         </header>
 
         <main>
-            <section class="bonus-section">
-                <h2>Daily Bonus</h2>
-                <div class="daily-bonus">
-                    <p>Claim your 50 DUBE daily bonus!</p>
-                    <button id="daily-bonus-btn" class="bonus-btn" disabled>Claim Bonus</button>
-                    <p id="bonus-timer">Next bonus available in: <span id="countdown">24:00:00</span></p>
-                </div>
-            </section>
-
             <section class="tasks">
-                <h2>Complete Tasks to Earn Points</h2>
+                <h2>Complete Tasks to Earn</h2>
+                
                 <div class="task-list">
+                    <!-- Daily Bonus as the first task -->
                     <div class="task">
-                        <h3>Join Telegram Group</h3>
+                        <h3>Daily Bonus</h3>
                         <p>+50 DUBE</p>
-                        <button class="task-btn" data-task="telegram">Complete</button>
+                        <button id="daily-bonus-btn" class="task-btn" data-task="daily" data-points="50" disabled>Claim</button>
+                        <p id="bonus-timer" class="task-timer">Next bonus in: <span id="countdown">24:00:00</span></p>
+                    </div>
+                    
+                    <div class="task">
+                        <h3>Join Telegram Channel</h3>
+                        <p>+50 DUBE</p>
+                        <button class="task-btn" data-task="https://t.me/dubesolana" data-points="50">Claim</button>
+                        <p class="task-timer"></p>
                     </div>
                     <div class="task">
                         <h3>Follow on Twitter</h3>
                         <p>+30 DUBE</p>
-                        <button class="task-btn" data-task="twitter">Complete</button>
+                        <button class="task-btn" data-task="https://x.com/dubesola?s=09" data-points="30">Claim</button>
                     </div>
                     <div class="task">
                         <h3>Retweet Post</h3>
                         <p>+20 DUBE</p>
-                        <button class="task-btn" data-task="retweet">Complete</button>
+                        <button class="task-btn" data-task="https://x.com/dubesola/status/1928779820483190833?s=19" data-points="20">Claim</button>
                     </div>
                 </div>
             </section>
@@ -61,6 +62,6 @@
         </footer>
     </div>
 
-    <<script src="js/telegram-app.js"></script>
+    <script src="js/telegram-app.js"></script>
 </body>
-</html>
+    </html
