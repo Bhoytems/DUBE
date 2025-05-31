@@ -6,16 +6,15 @@ tg.expand();
 const userPhoto = document.getElementById('user-photo');
 const userName = document.getElementById('user-name');
 const userBalance = document.getElementById('user-balance');
-const dailyBonusBtn = document.getElementById('daily-bonus-btn');
-const bonusTimer = document.getElementById('bonus-timer');
-const countdownElement = document.getElementById('countdown');
 const taskButtons = document.querySelectorAll('.task-btn');
+const countdownElement = document.getElementById('countdown');
 
 // User data
 let userData = {
     balance: 0,
     lastBonusClaim: null,
-    completedTasks: []
+    completedTasks: {},
+    lastTelegramClaim: null
 };
 
 // Initialize the app
@@ -41,8 +40,8 @@ function initApp() {
     // Update balance display
     updateBalance();
 
-    // Check daily bonus status
-    checkDailyBonus();
+    // Check task statuses
+    checkTaskStatuses();
 }
 
 // Update balance display
@@ -51,44 +50,72 @@ function updateBalance() {
     saveUserData();
 }
 
-// Check daily bonus availability
-function checkDailyBonus() {
+// Check all task statuses
+function checkTaskStatuses() {
     const now = new Date();
-    const lastClaim = userData.lastBonusClaim ? new Date(userData.lastBonusClaim) : null;
     
-    if (!lastClaim) {
-        // Never claimed before
+    // Check daily bonus
+    const lastBonusClaim = userData.lastBonusClaim ? new Date(userData.lastBonusClaim) : null;
+    const dailyBonusBtn = document.querySelector('[data-task="daily"]');
+    
+    if (!lastBonusClaim) {
         dailyBonusBtn.disabled = false;
         dailyBonusBtn.textContent = 'Claim Bonus';
-        bonusTimer.style.display = 'none';
-        return;
-    }
-
-    const nextClaimTime = new Date(lastClaim.getTime() + 24 * 60 * 60 * 1000);
-    
-    if (now >= nextClaimTime) {
-        // Bonus available
-        dailyBonusBtn.disabled = false;
-        dailyBonusBtn.textContent = 'Claim Bonus';
-        bonusTimer.style.display = 'none';
+        dailyBonusBtn.nextElementSibling.style.display = 'none';
     } else {
-        // Bonus not available yet
-        dailyBonusBtn.disabled = true;
-        dailyBonusBtn.textContent = 'Already Claimed';
-        bonusTimer.style.display = 'block';
-        startCountdown(nextClaimTime);
+        const nextBonusTime = new Date(lastBonusClaim.getTime() + 24 * 60 * 60 * 1000);
+        
+        if (now >= nextBonusTime) {
+            dailyBonusBtn.disabled = false;
+            dailyBonusBtn.textContent = 'Claim Bonus';
+            dailyBonusBtn.nextElementSibling.style.display = 'none';
+        } else {
+            dailyBonusBtn.disabled = true;
+            dailyBonusBtn.textContent = 'Claimed';
+            dailyBonusBtn.nextElementSibling.style.display = 'block';
+            startCountdown(nextBonusTime, countdownElement);
+        }
     }
+    
+    // Check Telegram task (repeatable daily)
+    const lastTelegramClaim = userData.lastTelegramClaim ? new Date(userData.lastTelegramClaim) : null;
+    const telegramBtn = document.querySelector('[data-task="telegram"]');
+    
+    if (!lastTelegramClaim) {
+        telegramBtn.disabled = false;
+        telegramBtn.nextElementSibling.style.display = 'none';
+    } else {
+        const nextTelegramTime = new Date(lastTelegramClaim.getTime() + 24 * 60 * 60 * 1000);
+        
+        if (now >= nextTelegramTime) {
+            telegramBtn.disabled = false;
+            telegramBtn.nextElementSibling.style.display = 'none';
+        } else {
+            telegramBtn.disabled = true;
+            telegramBtn.nextElementSibling.style.display = 'block';
+            startCountdown(nextTelegramTime, telegramBtn.nextElementSibling.querySelector('span'));
+        }
+    }
+    
+    // Check other tasks (one-time)
+    taskButtons.forEach(button => {
+        const taskType = button.getAttribute('data-task');
+        if (taskType !== 'daily' && taskType !== 'telegram' && userData.completedTasks[taskType]) {
+            button.disabled = true;
+            button.textContent = 'Completed';
+        }
+    });
 }
 
 // Start countdown timer
-function startCountdown(nextClaimTime) {
+function startCountdown(targetTime, element) {
     function updateCountdown() {
         const now = new Date();
-        const diff = nextClaimTime - now;
+        const diff = targetTime - now;
         
         if (diff <= 0) {
             clearInterval(timer);
-            checkDailyBonus();
+            checkTaskStatuses();
             return;
         }
         
@@ -96,60 +123,34 @@ function startCountdown(nextClaimTime) {
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
         
-        countdownElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        element.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
     
     updateCountdown();
     const timer = setInterval(updateCountdown, 1000);
 }
 
-// Claim daily bonus
-function claimDailyBonus() {
-    userData.balance += 50;
-    userData.lastBonusClaim = new Date().toISOString();
+// Complete task
+function completeTask(taskType, points) {
+    // Update balance
+    userData.balance += points;
+    
+    // Update task status
+    if (taskType === 'daily') {
+        userData.lastBonusClaim = new Date().toISOString();
+    } else if (taskType === 'telegram') {
+        userData.lastTelegramClaim = new Date().toISOString();
+    } else {
+        userData.completedTasks[taskType] = true;
+    }
     
     updateBalance();
-    checkDailyBonus();
+    checkTaskStatuses();
     
     // Show confirmation
     tg.showPopup({
-        title: 'Bonus Claimed!',
-        message: 'You have received 50 DUBE as your daily bonus.',
-        buttons: [{ type: 'ok' }]
-    });
-}
-
-// Complete task
-function completeTask(taskType) {
-    if (userData.completedTasks.includes(taskType)) {
-        tg.showPopup({
-            title: 'Already Completed',
-            message: 'You have already completed this task.',
-            buttons: [{ type: 'ok' }]
-        });
-        return;
-    }
-    
-    let points = 0;
-    switch (taskType) {
-        case 'telegram':
-            points = 50;
-            break;
-        case 'twitter':
-            points = 30;
-            break;
-        case 'retweet':
-            points = 20;
-            break;
-    }
-    
-    userData.balance += points;
-    userData.completedTasks.push(taskType);
-    updateBalance();
-    
-    tg.showPopup({
-        title: 'Task Completed!',
-        message: `You earned ${points} DUBE for completing this task.`,
+        title: 'Success!',
+        message: `You earned ${points} DUBE!`,
         buttons: [{ type: 'ok' }]
     });
 }
@@ -160,14 +161,13 @@ function saveUserData() {
 }
 
 // Event listeners
-dailyBonusBtn.addEventListener('click', claimDailyBonus);
-
 taskButtons.forEach(button => {
     button.addEventListener('click', () => {
         const taskType = button.getAttribute('data-task');
-        completeTask(taskType);
+        const points = parseInt(button.getAttribute('data-points'));
+        completeTask(taskType, points);
     });
 });
 
 // Initialize the app when DOM is loaded
-document.addEventListener('DOMContentLoaded', initApp);
+document.addEventListener('DOMContentLoaded', initApp)
